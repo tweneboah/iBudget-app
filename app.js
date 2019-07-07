@@ -1,10 +1,11 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const usersRoutes = require('./routes/api/users')
 const app = express();
-const path = require('path');
 
 
-mongoose.connect('mongodb://localhost/Budget-App', {
+
+mongoose.connect('mongodb://localhost/iBudget', {
  useNewUrlParser: true,
  useCreateIndex: true
 })
@@ -14,6 +15,8 @@ mongoose.connect('mongodb://localhost/Budget-App', {
 app.use(express.json({ extended: false }));
 
 
+//SERVING ROUTES
+app.use('/api/users', usersRoutes)
 
 //SERVER
 const PORT = process.env.PORT || 5000;
