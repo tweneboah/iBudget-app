@@ -1,7 +1,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const usersRoutes = require('./routes/api/users');
-const mongodbConnect = require('./config/db')
+const mongodbConnect = require('./config/db');
+const path = require('path');
 const app = express();
 const cors = require('cors')
 
