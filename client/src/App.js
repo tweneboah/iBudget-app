@@ -6,7 +6,6 @@ import AllUsers from './components/pages/AllUsers'
 function App() {
   return (
     <div className="App">
-        <AllUsers/>
           <UserRegistrationForm/>  
     </div>
   );

@@ -1,5 +1,6 @@
-import React, { useState} from 'react'
+import React, { useState, Fragment} from 'react'
 import { connect } from 'react-redux';
+import  useForm from 'react-hook-form';
 import  {createUsers} from '../../redux/actions/userRegisterAction';
 
 
@@ -33,27 +34,35 @@ import  {createUsers} from '../../redux/actions/userRegisterAction';
     props.createUsers(formData)
   };
 
-
+//BUILT IN FUNCTIONS FROM HOOK FORMS
+const { register, handleSubmit, reset, errors } = useForm();
   return (
    <div>
      <section className="container">
       <h1 className="large text-primary">Sign Up</h1>
       <p className="lead"><i className="fas fa-user"></i> Create Your Account</p>
-      <form className="form" onSubmit = {onFormSubmit}>
-        <div className="form-group">
+      <form className="form" onSubmit = {handleSubmit(onFormSubmit)}>
+        <div className='text-danger'>
+         <div className="form-group">
           <input
            type="text"
             placeholder="Name"
             name="name" 
-            onChange = {onChangeName}/>
+            onChange = {onChangeName}
+             ref = {register({required: true})}
+            />
+        {errors.name && 'Name is required'}
         </div>
 
         <div className="form-group">
-          <input 
+          <input
           type="email" 
           placeholder="Email Address" 
           name="email" 
-          onChange = {onChangeEmail} />
+          onChange = {onChangeEmail}
+          ref = {register({required: true})}
+          />
+          {errors.email && 'Email is required'}
           <small className="form-text"
             >This site uses Gravatar so if you want a profile image, use a
             Gravatar email</small>
@@ -66,9 +75,12 @@ import  {createUsers} from '../../redux/actions/userRegisterAction';
             placeholder="Password"
             name="password"
             onChange = {onChangePassword}
+            ref = {register({required: true})}
           />
+          {errors.password && 'Password is required'}
         </div>
         <input type="submit" className="btn btn-danger" value="Register" />
+       </div>
       </form>
       <p className="my-1">
         Already have an account? <a href="login.html">Sign In</a>
