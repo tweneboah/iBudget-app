@@ -7,8 +7,16 @@ const app = express();
 const cors = require('cors')
 
 
-//Connect to DB
-mongodbConnect()
+// //Connect to DB
+// mongodbConnect()
+
+mongoose.connect('mongodb://localhost/iBudget', {
+        useNewUrlParser: true,
+        useCreateIndex: true
+    })
+    .then(() => console.log("DB Connected successfully"));
+
+
 
 //SERVING CLIENT FOLDER @ PRODUCTION
 app.use(express.static(path.join(__dirname, 'client/build')));
