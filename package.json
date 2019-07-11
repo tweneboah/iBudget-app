@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "This app helps you to manage your your resources which uses modern technologies: React-Redux, Node JS, Express Js, Mongodb-Mongoose",
   "main": "app.js",
+  "engines": {
+    "node": "v10.15.1",
+    "npm": "6.9.0"
+  },
   "scripts": {
     "start": "node app.js",
     "server": "nodemon app.js",
