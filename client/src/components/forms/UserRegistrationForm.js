@@ -11,17 +11,25 @@ import  {createUsers} from '../../redux/actions/userRegisterAction';
        password: ''
    })
 
-   console.log('My props', props)
-   //Create on change methods
-   //This method update the state values
-   const onChange = (e) => {
-     setFormData({...formData, [e.target.name]: e.target.value})
-   }
+ //=======FOR CHANGE METHODS======
+ const onChangeName = (e) => {
+    setFormData({...formData, name: e.target.value})
+ }
 
-  //Onsubmit
+ const onChangeEmail = (e) => {
+    setFormData({...formData, email: e.target.value})
+ }
+
+ const onChangePassword = (e) => {
+     setFormData({...formData, password: e.target.value})
+ }
+//=================END ON CHANGE METHODS======
+
+  //=========== SUBMIT=======
+
   const onFormSubmit = e => {
     e.preventDefault();
-   console.log('formData', formData.name)
+//Calling the action creator
     props.createUsers(formData)
   };
 
@@ -33,29 +41,31 @@ import  {createUsers} from '../../redux/actions/userRegisterAction';
       <p className="lead"><i className="fas fa-user"></i> Create Your Account</p>
       <form className="form" onSubmit = {onFormSubmit}>
         <div className="form-group">
-          <input type="text" placeholder="Name" name="name"   onChange = {onChange}/>
+          <input
+           type="text"
+            placeholder="Name"
+            name="name" 
+            onChange = {onChangeName}/>
         </div>
+
         <div className="form-group">
-          <input type="email" placeholder="Email Address" name="email" onChange = {e => onChange(e)} />
+          <input 
+          type="email" 
+          placeholder="Email Address" 
+          name="email" 
+          onChange = {onChangeEmail} />
           <small className="form-text"
             >This site uses Gravatar so if you want a profile image, use a
-            Gravatar email</small
-          >
+            Gravatar email</small>
+
         </div>
+
         <div className="form-group">
           <input
             type="password"
             placeholder="Password"
             name="password"
-            onChange = {onChange}
-          />
-        </div>
-        <div className="form-group">
-          <input
-            type="password"
-            placeholder="Confirm Password"
-
-            onChange = {onChange}
+            onChange = {onChangePassword}
           />
         </div>
         <input type="submit" className="btn btn-danger" value="Register" />
