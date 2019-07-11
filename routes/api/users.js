@@ -1,7 +1,11 @@
 const express = require('express');
 const usersRouter = express.Router();
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+const config = require('config');
 const User = require('../../models/Users')
 
+//Create user, give token, hash password and authenticate
 
 usersRouter.post('/', async (req, res) => {
    //Destructure the data coming from the req body
@@ -15,13 +19,17 @@ usersRouter.post('/', async (req, res) => {
         //If the email is not created the we create the user
         user = new User({name, email, password})
 
+        //Hash the password
+        const salt = bcrypt.genSalt(10)
+        user.password = await bcrypt.hash(password, salt);
+
         //Save the user
         await user.save()
         
        return  res.json(user)
    } catch (error) {
     res.json({
-     error: error
+     myyerror: error
     })
    }
 

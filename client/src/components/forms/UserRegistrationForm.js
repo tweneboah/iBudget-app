@@ -29,7 +29,7 @@ import  {createUsers} from '../../redux/actions/userRegisterAction';
   //=========== SUBMIT=======
 
   const onFormSubmit = e => {
-    e.preventDefault();
+  
 //Calling the action creator
     props.createUsers(formData)
   };
